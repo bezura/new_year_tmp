@@ -121,11 +121,11 @@ async def get_user_by_id_endpoint(
         return result.scalar()
 
 
-@app.get("/user/{telegram_id}/update-score")
+@app.post("/user/{telegram_id}/update-score")
 async def update_user_score_by_id_endpoint(
         telegram_id: int,
+        score: float,
         _=Depends(auth_user_request),
-        score: float = Query(0)
 ):
     async with async_session_maker() as session:
         query = sqlalchemy_update(UserDB).where(UserDB.telegram_id == telegram_id).values(score=score)
