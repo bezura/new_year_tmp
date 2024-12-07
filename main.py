@@ -5,8 +5,6 @@ from fastapi import Depends, Query
 from fastapi import FastAPI
 from fastapi import HTTPException, Request, status
 from init_data_py import InitData
-from pydantic import BaseModel as PydanticBaseModel
-from pydantic import ConfigDict
 from sqlalchemy import String, BigInteger, Float
 from sqlalchemy import func
 from sqlalchemy import update as sqlalchemy_update
@@ -23,8 +21,8 @@ async_session_maker = async_sessionmaker(engine, class_=AsyncSession)
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
 
 
 class UserDB(Base):
