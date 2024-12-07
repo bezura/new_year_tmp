@@ -15,11 +15,7 @@ from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_
 from sqlalchemy.future import select
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from starlette.middleware.cors import CORSMiddleware
-
-
-class BaseModel(PydanticBaseModel):
-    model_config = ConfigDict(json_encoders={datetime: lambda o: o.isoformat()})
-
+from pydantic import BaseModel
 
 database_url = 'sqlite+aiosqlite:///db.sqlite3'
 engine = create_async_engine(url=database_url)
