@@ -1,30 +1,20 @@
 import datetime
 from typing import List, Optional
 
-from sqlalchemy import JSON
-
-from fastapi import HTTPException, Depends, Request, status
-from sqlalchemy.orm import declarative_base, Mapped, mapped_column
-from sqlalchemy import DateTime, func
-from sqlalchemy import String, BigInteger, Integer, Date, Time, ForeignKey, Enum, Float
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import func
-from datetime import datetime
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
-from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine, AsyncSession
+from fastapi import Depends, Query
 from fastapi import FastAPI
-from fastapi.openapi.utils import get_openapi
-from fastapi.routing import APIRoute, APIRouter
-from starlette.middleware.cors import CORSMiddleware
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.future import select
-from sqlalchemy import update as sqlalchemy_update, delete as sqlalchemy_delete
-from datetime import datetime
-from fastapi import APIRouter, Depends, Query
-
+from fastapi import HTTPException, Request, status
+from init_data_py import InitData
 from pydantic import BaseModel as PydanticBaseModel
 from pydantic import ConfigDict
-from init_data_py import InitData
+from sqlalchemy import String, BigInteger, Float
+from sqlalchemy import func
+from sqlalchemy import update as sqlalchemy_update
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine, AsyncSession
+from sqlalchemy.future import select
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
+from starlette.middleware.cors import CORSMiddleware
 
 
 class BaseModel(PydanticBaseModel):
